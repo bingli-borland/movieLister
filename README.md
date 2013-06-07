@@ -1,4 +1,4 @@
 movieLister
 ===========
 
-movie lister without DI
+movie lister with constructor DI

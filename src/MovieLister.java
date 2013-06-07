@@ -10,8 +10,8 @@ import java.util.List;
 public class MovieLister {
     MovieFinder finder;
     
-    public MovieLister(String movies){
-        finder = new ColonDelimitedMovieFinder(movies);
+    public MovieLister(MovieFinder finder){
+        this.finder = finder;
     }
     
     public List<Movie> moviesDirectedBy(String director){

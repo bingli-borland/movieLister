@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public class ColonDelimitedMovieFinder implements MovieFinder{
     public List<Movie> findAll() {
         List<Movie> movies = new ArrayList<Movie>(0);
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(movieFile)));
+            InputStream is = getClass().getResourceAsStream(movieFile);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String movieLine = br.readLine();
             while(movieLine != null){
                 String[] items = movieLine.split(",");
