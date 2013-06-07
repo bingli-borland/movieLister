@@ -15,10 +15,15 @@ import java.util.List;
  */
 public class ColonDelimitedMovieFinder implements MovieFinder{
     private String movieFile;
-    public ColonDelimitedMovieFinder(String movieFile){
-        this.movieFile = movieFile;
-        
+
+    public String getMovieFile() {
+        return movieFile;
     }
+
+    public void setMovieFile(String movieFile) {
+        this.movieFile = movieFile;
+    }
+
 
     @Override
     public List<Movie> findAll() {

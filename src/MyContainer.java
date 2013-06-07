@@ -1,12 +1,17 @@
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 为简化问题起见，这里的Container仅支持setter DI
+ * @author subaochen
+ */
 public class MyContainer implements Container {
 
     private Map<Class, Object> compMap = new HashMap<Class, Object>(0);
@@ -16,28 +21,22 @@ public class MyContainer implements Container {
         if (compMap.get(compKey) != null) {
             return;
         }
-
+        
         Constructor[] constructors = compImplementation.getConstructors();
         try {
-            // 这里只支持一个构造方法
+            // 这里只支持一个默认的构造方法
             Constructor constructor = constructors[0];
-            Class[] params = null;
-            if (compKey == compImplementation) {
-                params = constructor.getParameterTypes();
-                // 这里只支持基于构造方法的DI
-                // TODO 递归构造？
-                Object[] args = new Object[params.length];
-                for (int i = 0; i < params.length; i++) {
-                    Class param = params[i];
-                    args[i] = getComponentForParam(param);
+            Object comp = constructor.newInstance(null);
+            
+            Method[] methods = compImplementation.getDeclaredMethods();
+            if(methods != null && methods.length != 0){
+                for(Method method:methods){
+                    if(method.getName().startsWith("set")){
+                        
+                    }
                 }
-
-                if (!hasNullArgs(args)) {
-                    compMap.put(compKey, constructor.newInstance(args));
-                }
-            } else {
-                compMap.put(compKey, constructor.newInstance(parameters));
             }
+            compMap.put(compKey, comp);
         } catch (InstantiationException ex) {
             Logger.getLogger(MyContainer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -47,6 +46,8 @@ public class MyContainer implements Container {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(MyContainer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
 
     }
 

@@ -8,11 +8,16 @@ import java.util.List;
  * @author subaochen
  */
 public class MovieLister {
-    MovieFinder finder;
-    
-    public MovieLister(MovieFinder finder){
+    private MovieFinder finder;
+
+    public MovieFinder getFinder() {
+        return finder;
+    }
+
+    public void setFinder(MovieFinder finder) {
         this.finder = finder;
     }
+    
     
     public List<Movie> moviesDirectedBy(String director){
         List movies = new ArrayList<Movie>(0);
