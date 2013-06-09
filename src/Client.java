@@ -17,8 +17,7 @@ public class Client {
     
     public static Container configureContainer(){
         Container container = new MyContainer();
-        Object[] finderParams = new String[]{"movies.txt"};
-        container.registerComponent(MovieFinder.class, ColonDelimitedMovieFinder.class, finderParams);
+        container.registerComponent(MovieFinder.class, ColonDelimitedMovieFinder.class, null);
         container.registerComponent(MovieLister.class);
         return container;
     }

@@ -14,15 +14,8 @@ import java.util.List;
  * @author subaochen
  */
 public class ColonDelimitedMovieFinder implements MovieFinder{
-    private String movieFile;
 
-    public String getMovieFile() {
-        return movieFile;
-    }
-
-    public void setMovieFile(String movieFile) {
-        this.movieFile = movieFile;
-    }
+    private String movieFile = "movies.txt";
 
 
     @Override

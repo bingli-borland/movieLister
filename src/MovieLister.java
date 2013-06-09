@@ -8,15 +8,8 @@ import java.util.List;
  * @author subaochen
  */
 public class MovieLister {
-    private MovieFinder finder;
-
-    public MovieFinder getFinder() {
-        return finder;
-    }
-
-    public void setFinder(MovieFinder finder) {
-        this.finder = finder;
-    }
+    @Inject
+    MovieFinder finder;
     
     
     public List<Movie> moviesDirectedBy(String director){
