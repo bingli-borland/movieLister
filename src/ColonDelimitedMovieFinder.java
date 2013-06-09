@@ -16,11 +16,7 @@ import java.util.List;
 public class ColonDelimitedMovieFinder implements MovieFinder{
     private String movieFile;
 
-    public String getMovieFile() {
-        return movieFile;
-    }
-
-    public void setMovieFile(String movieFile) {
+    public ColonDelimitedMovieFinder(String movieFile) {
         this.movieFile = movieFile;
     }
 
