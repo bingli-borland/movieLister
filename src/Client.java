@@ -17,7 +17,7 @@ public class Client {
     
     public static Container configureContainer(){
         Container container = new MyContainer();
-        container.registerComponent(MovieFinder.class, ColonDelimitedMovieFinder.class, null);
+        container.registerComponent(MovieFinder.class, SqliteMovieFinder.class, null);
         container.registerComponent(MovieLister.class);
         return container;
     }
