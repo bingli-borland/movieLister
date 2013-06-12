@@ -9,7 +9,7 @@ import javax.inject.Inject;
  * @author subaochen
  */
 public class MovieLister {
-    @Inject MovieFinder finder;
+    @Inject @TextMovieStore MovieFinder finder;
     
     public List<Movie> moviesDirectedBy(String director){
         List<Movie> movies = new ArrayList<Movie>(0);

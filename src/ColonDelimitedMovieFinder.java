@@ -13,12 +13,14 @@ import java.util.List;
  *
  * @author subaochen
  */
+@TextMovieStore
 public class ColonDelimitedMovieFinder implements MovieFinder{
     private String movieFile = "movies.txt";
 
 
     @Override
     public List<Movie> findAll() {
+        System.out.println("will find movies from colon delimited text file");
         List<Movie> movies = new ArrayList<Movie>(0);
         try {
             InputStream is = getClass().getResourceAsStream(movieFile);
