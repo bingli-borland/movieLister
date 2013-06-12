@@ -1,21 +1,23 @@
 
 import java.util.List;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import org.jboss.weld.environment.se.bindings.Parameters;
+import org.jboss.weld.environment.se.events.ContainerInitialized;
 
 /**
  *
  * @author subaochen
  */
 public class Client {
-    public static void main(String[] args){
-        configure();
-        MovieLister lister = new MovieLister();        
-        List<Movie> movies = lister.moviesDirectedBy("zhang yi mou");
+    @Inject MovieLister movieLister;
+    
+    public void movieFinder(@Observes ContainerInitialized event,
+                    @Parameters List<String> parameters){
+        List<Movie> movies = movieLister.moviesDirectedBy("zhang yi mou");
         
         for(Movie movie:movies)
-            System.out.println(movie.getTitle());
-    }
-    
-    private static void configure() {
-        ServiceLocator.load(new ServiceLocator(new ColonDelimitedMovieFinder("movies.txt")));
-    }
+            System.out.println(movie.getTitle());        
+    }    
+
 }
